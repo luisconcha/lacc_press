@@ -25,16 +25,22 @@ class AdminCategoriesTest extends \TestCase
 
 		public function test_categories_listing()
 		{
-				Category::create( [ 'name' => 'Category 1', 'active' => true ] );
-				Category::create( [ 'name' => 'Category 2', 'active' => true ] );
-				Category::create( [ 'name' => 'Category 3', 'active' => true ] );
-				Category::create( [ 'name' => 'Category 4', 'active' => true ] );
+//				Category::create( [ 'name' => 'Category 1', 'active' => true ] );
+//				Category::create( [ 'name' => 'Category 2', 'active' => true ] );
+//				Category::create( [ 'name' => 'Category 3', 'active' => true ] );
+//				Category::create( [ 'name' => 'Category 4', 'active' => true ] );
 				$this->visit( '/admin/categories' )
-					->see( 'Category 1' )
-					->see( 'Category 2' )
-					->see( 'Category 3' )
-					->see( 'Category 4' );
+					->see( 'Julio Koepp' )
+					->see( 'Gia Jaskolski PhD' )
+					->see( 'Dr. Florencio Predovic DVM' );
+		}
 
+		public function test_click_create_new_category()
+		{
+				$this->visit( '/admin/categories' )
+					->click( 'Create Category' )
+					->seePageIs( '/admin/categories/create' )
+					->see( 'Create Categorie' );
 		}
 
 }

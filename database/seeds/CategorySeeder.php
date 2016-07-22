@@ -2,7 +2,7 @@
 use Illuminate\Database\Seeder;
 use LACCPress\LACCCategory\Models\Category;
 
-class DatabaseSeeder extends Seeder
+class CategorySeeder extends Seeder
 {
 		/**
 		 * Run the database seeds.
@@ -11,7 +11,6 @@ class DatabaseSeeder extends Seeder
 		 */
 		public function run()
 		{
-				// $this->call(UsersTableSeeder::class);
-				$this->call( CategorySeeder::class );
+				factory( Category::class, 5 )->create();
 		}
 }
