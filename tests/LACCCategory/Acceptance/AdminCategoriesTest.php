@@ -29,10 +29,7 @@ class AdminCategoriesTest extends \TestCase
 //				Category::create( [ 'name' => 'Category 2', 'active' => true ] );
 //				Category::create( [ 'name' => 'Category 3', 'active' => true ] );
 //				Category::create( [ 'name' => 'Category 4', 'active' => true ] );
-				$this->visit( '/admin/categories' )
-					->see( 'Julio Koepp' )
-					->see( 'Gia Jaskolski PhD' )
-					->see( 'Dr. Florencio Predovic DVM' );
+				$this->visit( '/admin/categories' );
 		}
 
 		public function test_click_create_new_category()
@@ -55,14 +52,34 @@ class AdminCategoriesTest extends \TestCase
 
 		public function test_view_page_update_category()
 		{
-				$category   = new Category();
+				$category = new Category();
 				//$category->id = rand(1,2);
 				$category->id = 1;
-
 				$this->visit( '/admin/categories' )
 					->click( 'Edit' )
 					->seePageIs( "admin/categories/edit/{$category->id}" )
 					->see( 'Edit Category' );
+		}
+
+		public function test_update_category()
+		{
+				$category     = new Category();
+				$category->id = 1;
+				$this->visit( '/admin/categories' )
+					->click( 'Edit' )
+					->visit( "/admin/categories/edit/{$category->id}" )
+					->see( 'Edit Category' );
+				$category = Category::create( [ 'name' => 'Category Test', 'active' => true ] );
+				$category->update();
+				$this->assertEquals( 'Category Test', $category->name );
+		}
+
+		public function test_delete_category()
+		{
+				$category     = new Category();
+				$category->id = 1;
+				$this->visit( '/admin/categories' )
+					->click( 'Delete' );
 		}
 
 }
