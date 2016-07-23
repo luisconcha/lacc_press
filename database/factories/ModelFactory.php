@@ -10,6 +10,7 @@
 |
 */
 use LACCPress\LACCCategory\Models\Category;
+use LACCPress\LACCTag\Models\Tag;
 
 $factory->define( App\User::class, function ( Faker\Generator $faker ) {
 		return [
@@ -23,5 +24,10 @@ $factory->define( Category::class, function ( Faker\Generator $faker ) {
 		return [
 			'name'   => $faker->name,
 			'active' => true,
+		];
+} );
+$factory->define( Tag::class, function ( Faker\Generator $faker ) {
+		return [
+			'name' => $faker->word
 		];
 } );
