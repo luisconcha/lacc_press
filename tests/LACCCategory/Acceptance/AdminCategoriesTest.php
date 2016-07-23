@@ -40,7 +40,7 @@ class AdminCategoriesTest extends \TestCase
 				$this->visit( '/admin/categories' )
 					->click( 'Create Category' )
 					->seePageIs( '/admin/categories/create' )
-					->see( 'Create Categorie' );
+					->see( 'Create Category' );
 		}
 
 		public function test_create_new_category()
@@ -51,6 +51,18 @@ class AdminCategoriesTest extends \TestCase
 					->press( 'Create category' )
 					->seePageIs( 'admin/categories' )
 					->see( 'Category Test' );
+		}
+
+		public function test_view_page_update_category()
+		{
+				$category   = new Category();
+				//$category->id = rand(1,2);
+				$category->id = 1;
+
+				$this->visit( '/admin/categories' )
+					->click( 'Edit' )
+					->seePageIs( "admin/categories/edit/{$category->id}" )
+					->see( 'Edit Category' );
 		}
 
 }
